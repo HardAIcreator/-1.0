@@ -19,7 +19,7 @@
             align-items: center;
             min-height: 100vh;
             overflow: hidden;
-            touch-action: manipulation;
+            touch-action: none;
         }
         #game-container {
             position: relative;
@@ -38,45 +38,45 @@
         #top-bar {
             background: linear-gradient(180deg, #6d4c2a 0%, #3d2314 100%);
             border-bottom: 4px solid #f5d742;
-            padding: 8px 6px;
+            padding: 6px 4px;
             display: flex;
             flex-wrap: wrap;
-            gap: 5px;
+            gap: 3px;
             justify-content: center;
             z-index: 10;
-            min-height: 52px;
+            min-height: 44px;
         }
         .shop-btn {
             background: linear-gradient(180deg, #ffd54f 0%, #f9a825 100%);
             border: 2px solid #fff;
-            border-radius: 10px;
-            padding: 4px 8px;
-            font-size: 10px;
+            border-radius: 8px;
+            padding: 3px 6px;
+            font-size: 9px;
             font-weight: 800;
             color: #3e2723;
             cursor: pointer;
             box-shadow: 0 3px 0 #b78103;
             text-shadow: 0 1px 0 rgba(255, 255, 255, 0.4);
             transition: all 0.05s;
-            letter-spacing: 0.3px;
+            letter-spacing: 0.2px;
         }
         .shop-btn:active {
             transform: translateY(3px);
             box-shadow: none;
         }
         .shop-btn.disabled {
-            opacity: 0.5;
+            opacity: 0.4;
             transform: translateY(2px);
             box-shadow: none;
             pointer-events: none;
         }
         #ui-stats {
-            background: rgba(0, 0, 0, 0.65);
+            background: rgba(0, 0, 0, 0.7);
             color: #fff;
-            padding: 6px 14px;
+            padding: 4px 10px;
             display: flex;
             justify-content: space-between;
-            font-size: 12px;
+            font-size: 11px;
             font-weight: 700;
             text-shadow: 1px 1px 3px #000;
             z-index: 10;
@@ -93,23 +93,24 @@
             height: 100%;
             touch-action: none;
             cursor: pointer;
+            position: relative;
         }
         #bottom-bar {
             background: linear-gradient(180deg, #5a3a20 0%, #2c1a0e 100%);
-            padding: 8px 10px;
+            padding: 6px 8px;
             display: flex;
             justify-content: space-around;
             z-index: 10;
             border-top: 4px solid #f5d742;
-            gap: 6px;
+            gap: 4px;
             flex-wrap: wrap;
         }
         .action-btn {
             background: linear-gradient(180deg, #66bb6a 0%, #2e7d32 100%);
             border: 2px solid #fff;
-            border-radius: 12px;
-            padding: 6px 12px;
-            font-size: 10px;
+            border-radius: 10px;
+            padding: 4px 10px;
+            font-size: 9px;
             font-weight: 800;
             color: #fff;
             cursor: pointer;
@@ -117,7 +118,7 @@
             box-shadow: 0 3px 0 #1b5e20;
             text-shadow: 1px 1px 2px #000;
             transition: all 0.05s;
-            min-width: 60px;
+            min-width: 55px;
         }
         .action-btn:active {
             transform: translateY(3px);
@@ -135,15 +136,19 @@
             background: linear-gradient(180deg, #ab47bc 0%, #4a148c 100%);
             box-shadow: 0 3px 0 #4a148c;
         }
+        .action-btn.brown {
+            background: linear-gradient(180deg, #8d6e63 0%, #4e342e 100%);
+            box-shadow: 0 3px 0 #3e2723;
+        }
         #level-info {
             position: absolute;
-            top: 58px;
-            right: 10px;
-            background: rgba(0, 0, 0, 0.75);
+            top: 50px;
+            right: 8px;
+            background: rgba(0, 0, 0, 0.8);
             color: #ffd54f;
-            padding: 4px 12px;
-            border-radius: 12px;
-            font-size: 11px;
+            padding: 3px 10px;
+            border-radius: 10px;
+            font-size: 10px;
             font-weight: 700;
             z-index: 15;
             border: 2px solid #ffd54f;
@@ -151,31 +156,55 @@
         }
         #timer-display {
             position: absolute;
-            top: 58px;
-            left: 10px;
-            background: rgba(0, 0, 0, 0.75);
+            top: 50px;
+            left: 8px;
+            background: rgba(0, 0, 0, 0.8);
             color: #ff6b6b;
-            padding: 4px 12px;
-            border-radius: 12px;
-            font-size: 13px;
+            padding: 3px 10px;
+            border-radius: 10px;
+            font-size: 12px;
             font-weight: 800;
             z-index: 15;
             border: 2px solid #ff6b6b;
             pointer-events: none;
         }
+        #storage-display {
+            position: absolute;
+            bottom: 75px;
+            right: 8px;
+            background: rgba(0, 0, 0, 0.8);
+            color: #fff;
+            padding: 4px 8px;
+            border-radius: 8px;
+            font-size: 8px;
+            z-index: 15;
+            border: 2px solid #ffd54f;
+            max-width: 100px;
+            pointer-events: none;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2px;
+        }
+        .storage-item {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 1px 4px;
+            border-radius: 3px;
+            font-size: 7px;
+            white-space: nowrap;
+        }
         @media (max-width: 400px) {
             .shop-btn {
-                font-size: 8px;
-                padding: 3px 5px;
+                font-size: 7px;
+                padding: 2px 4px;
             }
             .action-btn {
-                font-size: 8px;
-                padding: 4px 8px;
-                min-width: 50px;
+                font-size: 7px;
+                padding: 3px 6px;
+                min-width: 45px;
             }
             #ui-stats {
-                font-size: 10px;
-                padding: 4px 8px;
+                font-size: 9px;
+                padding: 3px 6px;
             }
         }
     </style>
@@ -184,32 +213,33 @@
 
     <div id="game-container">
         <div id="top-bar">
-            <button class="shop-btn" onclick="buyAnimal('chicken')">🐔 Курица<br>$120</button>
-            <button class="shop-btn" onclick="buyAnimal('pig')">🐷 Свинья<br>$1200</button>
-            <button class="shop-btn" onclick="buyAnimal('cow')">🐮 Корова<br>$12000</button>
-            <button class="shop-btn" onclick="buyHelper('cat')">🐱 Кот<br>$3000</button>
-            <button class="shop-btn" onclick="buyHelper('dog')">🐶 Пёс<br>$3000</button>
-            <button class="shop-btn" onclick="buyFactory()">🏭 Завод<br>$2000</button>
+            <button class="shop-btn" onclick="buyAnimal('chicken')">🐔 Курица $80</button>
+            <button class="shop-btn" onclick="buyAnimal('pig')">🐷 Свинья $800</button>
+            <button class="shop-btn" onclick="buyAnimal('cow')">🐮 Корова $8000</button>
+            <button class="shop-btn" onclick="buyHelper('cat')">🐱 Кот $2500</button>
+            <button class="shop-btn" onclick="buyHelper('dog')">🐶 Пёс $2500</button>
         </div>
 
         <div id="ui-stats">
-            <div>💰 $<span id="money">500</span></div>
+            <div>💰 $<span id="money">300</span></div>
             <div>💧 <span id="water">5</span>/5</div>
-            <div>📦 <span id="storage">0</span>/20</div>
+            <div>📦 <span id="storage">0</span>/15</div>
             <div>⭐ <span id="stars">0</span></div>
             <div>🎯 <span id="level">1</span>/90</div>
         </div>
 
-        <div id="level-info">🎯 Цель: $<span id="goal-money">5000</span></div>
+        <div id="level-info">🎯 $<span id="goal-money">5000</span></div>
         <div id="timer-display">⏱ <span id="timer">60</span>с</div>
+        <div id="storage-display"></div>
 
         <canvas id="canvas"></canvas>
 
         <div id="bottom-bar">
-            <div class="action-btn" onclick="refillWell()">💧 Колодец<br>$25</div>
-            <div class="action-btn orange" onclick="sendPlane()">✈️ Самолёт<br>Заказ</div>
+            <div class="action-btn brown" onclick="buildWell()">💧 Колодец<br>$100</div>
+            <div class="action-btn brown" onclick="buildFactory()">🏭 Завод<br>$1500</div>
+            <div class="action-btn orange" onclick="sendPlane()">✈️ Самолёт<br>$150</div>
             <div class="action-btn blue" onclick="sendTruck()">🚚 Грузовик<br>Продать</div>
-            <div class="action-btn purple" onclick="upgradeStorage()">📦 Склад<br>$500</div>
+            <div class="action-btn purple" onclick="upgradeStorage()">📦 +5 мест<br>$400</div>
         </div>
     </div>
 
@@ -218,11 +248,11 @@
         const ctx = canvas.getContext('2d');
 
         // ------ ИГРОВЫЕ ПАРАМЕТРЫ ------
-        let money = 500;
+        let money = 300;
         let water = 5;
         const maxWater = 5;
         let warehouse = [];
-        let maxStorage = 20;
+        let maxStorage = 15;
         let stars = 0;
         let level = 1;
         let timer = 60;
@@ -230,32 +260,41 @@
         let gameActive = true;
         let levelComplete = false;
 
-        // Списки объектов
+        // Объекты на поле
         let grasses = [];
         let animals = [];
         let helpers = [];
         let items = [];
         let bears = [];
         let factories = [];
+        let wells = [];
         let particles = [];
-        let planes = [];
         let trucks = [];
+        let planes = [];
+        let flyingAnimals = [];
 
         // Цены ресурсов
         const PRICES = {
-            egg: 15,
-            powder: 35,
-            cake: 80,
-            meat: 100,
-            mince: 200,
-            delicacy: 500,
-            milk: 250,
-            butter: 600,
-            cheese: 1500,
-            bear: 200
+            egg: 12,
+            powder: 30,
+            cake: 70,
+            meat: 90,
+            mince: 180,
+            delicacy: 450,
+            milk: 200,
+            butter: 550,
+            cheese: 1400,
+            bear: 150
         };
 
-        let factoryCount = 0;
+        let factoryTypes = ['powder', 'mince', 'butter'];
+        let factoryNames = ['Порошок', 'Фарш', 'Масло'];
+        let factoryInputs = ['egg', 'meat', 'milk'];
+        let wellCount = 0;
+        let truckActive = false;
+        let planeActive = false;
+        let truckTimer = 0;
+        let planeTimer = 0;
 
         // ------ РАЗМЕР КАНВАСА ------
         function resize() {
@@ -266,10 +305,9 @@
         resize();
         window.addEventListener('resize', resize);
 
-        // ------ ОТРИСОВКА ПРОРАБОТАННЫХ МОДЕЛЕЙ ------
+        // ------ ОТРИСОВКА ------
 
         function drawBackground() {
-            // Земля с текстурой
             const grad = ctx.createLinearGradient(0, 0, 0, canvas.height);
             grad.addColorStop(0, '#5d8c5d');
             grad.addColorStop(0.5, '#4a7c4a');
@@ -279,40 +317,34 @@
 
             // Дорожки
             ctx.fillStyle = '#b8a88a';
-            ctx.fillRect(0, 0, canvas.width, 65);
-            ctx.fillRect(0, canvas.height - 65, canvas.width, 65);
-            // Разметка дорожек
+            ctx.fillRect(0, 0, canvas.width, 60);
+            ctx.fillRect(0, canvas.height - 60, canvas.width, 60);
             ctx.fillStyle = '#d4c4a4';
             for (let i = 20; i < canvas.width - 20; i += 30) {
-                ctx.fillRect(i, 28, 15, 8);
-                ctx.fillRect(i, canvas.height - 38, 15, 8);
+                ctx.fillRect(i, 24, 12, 6);
+                ctx.fillRect(i, canvas.height - 34, 12, 6);
             }
 
             // Забор
             ctx.strokeStyle = '#8d6e63';
-            ctx.lineWidth = 3;
-            ctx.setLineDash([8, 12]);
-            ctx.strokeRect(10, 72, canvas.width - 20, canvas.height - 142);
+            ctx.lineWidth = 2;
+            ctx.setLineDash([6, 10]);
+            ctx.strokeRect(8, 66, canvas.width - 16, canvas.height - 130);
             ctx.setLineDash([]);
-
-            // Тень от забора
-            ctx.fillStyle = 'rgba(0,0,0,0.1)';
-            ctx.fillRect(10, 72, 6, canvas.height - 142);
-            ctx.fillRect(canvas.width - 16, 72, 6, canvas.height - 142);
         }
 
         function drawGrass(g) {
-            const sizes = [6, 8, 7, 9, 6];
+            const sizes = [5, 7, 6, 8, 5];
             for (let i = 0; i < 5; i++) {
-                const angle = g.phase + i * 1.2;
-                const sway = Math.sin(angle) * 2;
+                const angle = g.phase + i * 1.1;
+                const sway = Math.sin(angle) * 1.5;
                 ctx.beginPath();
-                ctx.moveTo(g.x + i * 3 - 6, g.y + 6);
+                ctx.moveTo(g.x + i * 2.5 - 5, g.y + 4);
                 ctx.quadraticCurveTo(
-                    g.x + i * 3 - 6 + sway,
+                    g.x + i * 2.5 - 5 + sway,
                     g.y - sizes[i],
-                    g.x + i * 3 - 6 + sway * 1.5,
-                    g.y + 6
+                    g.x + i * 2.5 - 5 + sway * 1.3,
+                    g.y + 4
                 );
                 ctx.fillStyle = i % 2 === 0 ? '#4caf50' : '#388e3c';
                 ctx.fill();
@@ -326,182 +358,140 @@
             // Тень
             ctx.fillStyle = 'rgba(0,0,0,0.2)';
             ctx.beginPath();
-            ctx.ellipse(2, 14, 18, 6, 0, 0, Math.PI * 2);
+            ctx.ellipse(0, 12, 16, 5, 0, 0, Math.PI * 2);
             ctx.fill();
 
             if (a.type === 'chicken') {
-                // Тело
                 ctx.fillStyle = '#f5f5f5';
                 ctx.beginPath();
-                ctx.ellipse(0, 0, 14, 12, 0, 0, Math.PI * 2);
+                ctx.ellipse(0, 0, 12, 10, 0, 0, Math.PI * 2);
                 ctx.fill();
-                // Гребешок
                 ctx.fillStyle = '#e53935';
                 ctx.beginPath();
-                ctx.arc(-3, -13, 5, 0, Math.PI * 2);
+                ctx.arc(-2, -11, 4, 0, Math.PI * 2);
                 ctx.fill();
                 ctx.beginPath();
-                ctx.arc(4, -14, 4, 0, Math.PI * 2);
+                ctx.arc(3, -12, 3.5, 0, Math.PI * 2);
                 ctx.fill();
-                // Клюв
                 ctx.fillStyle = '#f57c00';
                 ctx.beginPath();
-                ctx.moveTo(10, -2);
-                ctx.lineTo(17, 1);
-                ctx.lineTo(10, 4);
+                ctx.moveTo(8, -1);
+                ctx.lineTo(14, 1);
+                ctx.lineTo(8, 3);
                 ctx.fill();
-                // Глаз
                 ctx.fillStyle = '#000';
                 ctx.beginPath();
-                ctx.arc(5, -4, 2.5, 0, Math.PI * 2);
+                ctx.arc(4, -3, 2, 0, Math.PI * 2);
                 ctx.fill();
                 ctx.fillStyle = '#fff';
                 ctx.beginPath();
-                ctx.arc(4.5, -5, 1, 0, Math.PI * 2);
+                ctx.arc(3.5, -4, 0.8, 0, Math.PI * 2);
                 ctx.fill();
-                // Крыло
                 ctx.fillStyle = '#e0e0e0';
                 ctx.beginPath();
-                ctx.ellipse(-6, 2, 6, 4, 0.3, 0, Math.PI * 2);
-                ctx.fill();
-                // Хвост
-                ctx.fillStyle = '#bdbdbd';
-                ctx.beginPath();
-                ctx.moveTo(-14, -2);
-                ctx.quadraticCurveTo(-20, -8, -16, -10);
-                ctx.quadraticCurveTo(-18, -4, -12, 0);
+                ctx.ellipse(-5, 2, 5, 3, 0.3, 0, Math.PI * 2);
                 ctx.fill();
             } else if (a.type === 'pig') {
-                // Тело
                 ctx.fillStyle = '#f8bbd0';
                 ctx.beginPath();
-                ctx.ellipse(0, 2, 18, 14, 0, 0, Math.PI * 2);
+                ctx.ellipse(0, 1, 16, 12, 0, 0, Math.PI * 2);
                 ctx.fill();
-                // Пятачок
                 ctx.fillStyle = '#f06292';
                 ctx.beginPath();
-                ctx.ellipse(14, 2, 6, 5, 0, 0, Math.PI * 2);
+                ctx.ellipse(12, 1, 5, 4, 0, 0, Math.PI * 2);
                 ctx.fill();
                 ctx.fillStyle = '#c2185b';
                 ctx.beginPath();
-                ctx.arc(13, 0, 1.5, 0, Math.PI * 2);
+                ctx.arc(11, -1, 1.2, 0, Math.PI * 2);
                 ctx.fill();
                 ctx.beginPath();
-                ctx.arc(16, 0, 1.5, 0, Math.PI * 2);
+                ctx.arc(14, -1, 1.2, 0, Math.PI * 2);
                 ctx.fill();
-                // Ушки
                 ctx.fillStyle = '#f48fb1';
                 ctx.beginPath();
-                ctx.ellipse(-6, -10, 5, 7, -0.3, 0, Math.PI * 2);
+                ctx.ellipse(-5, -8, 4, 6, -0.3, 0, Math.PI * 2);
                 ctx.fill();
                 ctx.beginPath();
-                ctx.ellipse(6, -10, 5, 7, 0.3, 0, Math.PI * 2);
+                ctx.ellipse(5, -8, 4, 6, 0.3, 0, Math.PI * 2);
                 ctx.fill();
-                // Глаза
                 ctx.fillStyle = '#000';
                 ctx.beginPath();
-                ctx.arc(6, -3, 2.5, 0, Math.PI * 2);
+                ctx.arc(5, -2, 2, 0, Math.PI * 2);
                 ctx.fill();
                 ctx.beginPath();
-                ctx.arc(12, -3, 2.5, 0, Math.PI * 2);
+                ctx.arc(10, -2, 2, 0, Math.PI * 2);
                 ctx.fill();
                 ctx.fillStyle = '#fff';
                 ctx.beginPath();
-                ctx.arc(5.5, -4, 1, 0, Math.PI * 2);
+                ctx.arc(4.5, -3, 0.8, 0, Math.PI * 2);
                 ctx.fill();
                 ctx.beginPath();
-                ctx.arc(11.5, -4, 1, 0, Math.PI * 2);
+                ctx.arc(9.5, -3, 0.8, 0, Math.PI * 2);
                 ctx.fill();
-                // Ножки
                 ctx.fillStyle = '#e8a0b0';
-                ctx.fillRect(-8, 12, 4, 6);
-                ctx.fillRect(4, 12, 4, 6);
-                // Хвост-крючок
-                ctx.strokeStyle = '#f48fb1';
-                ctx.lineWidth = 3;
-                ctx.beginPath();
-                ctx.moveTo(-16, 0);
-                ctx.quadraticCurveTo(-22, -6, -18, -10);
-                ctx.stroke();
+                ctx.fillRect(-6, 10, 3, 5);
+                ctx.fillRect(3, 10, 3, 5);
             } else if (a.type === 'cow') {
-                // Тело
                 ctx.fillStyle = '#fafafa';
                 ctx.beginPath();
-                ctx.ellipse(0, 2, 24, 18, 0, 0, Math.PI * 2);
+                ctx.ellipse(0, 1, 20, 15, 0, 0, Math.PI * 2);
                 ctx.fill();
-                // Пятна
                 ctx.fillStyle = '#424242';
                 ctx.beginPath();
-                ctx.ellipse(-8, -4, 8, 6, 0.2, 0, Math.PI * 2);
+                ctx.ellipse(-6, -3, 6, 5, 0.2, 0, Math.PI * 2);
                 ctx.fill();
                 ctx.beginPath();
-                ctx.ellipse(10, 6, 7, 5, -0.1, 0, Math.PI * 2);
+                ctx.ellipse(8, 5, 5, 4, -0.1, 0, Math.PI * 2);
                 ctx.fill();
                 ctx.beginPath();
-                ctx.ellipse(-12, 8, 5, 4, 0.5, 0, Math.PI * 2);
+                ctx.ellipse(-10, 6, 4, 3, 0.5, 0, Math.PI * 2);
                 ctx.fill();
-                // Морда
                 ctx.fillStyle = '#ffe0b2';
                 ctx.beginPath();
-                ctx.ellipse(18, 2, 10, 9, 0, 0, Math.PI * 2);
+                ctx.ellipse(15, 1, 8, 7, 0, 0, Math.PI * 2);
                 ctx.fill();
-                // Ноздри
                 ctx.fillStyle = '#5d4037';
                 ctx.beginPath();
-                ctx.arc(15, 5, 2, 0, Math.PI * 2);
+                ctx.arc(13, 4, 1.5, 0, Math.PI * 2);
                 ctx.fill();
                 ctx.beginPath();
-                ctx.arc(21, 5, 2, 0, Math.PI * 2);
+                ctx.arc(18, 4, 1.5, 0, Math.PI * 2);
                 ctx.fill();
-                // Рожки
                 ctx.fillStyle = '#ffb300';
                 ctx.beginPath();
-                ctx.moveTo(0, -14);
-                ctx.lineTo(-6, -22);
-                ctx.lineTo(-2, -20);
+                ctx.moveTo(0, -12);
+                ctx.lineTo(-4, -18);
+                ctx.lineTo(-1, -16);
                 ctx.fill();
                 ctx.beginPath();
-                ctx.moveTo(8, -14);
-                ctx.lineTo(14, -22);
-                ctx.lineTo(10, -20);
+                ctx.moveTo(6, -12);
+                ctx.lineTo(10, -18);
+                ctx.lineTo(7, -16);
                 ctx.fill();
-                // Глаза
                 ctx.fillStyle = '#000';
                 ctx.beginPath();
-                ctx.arc(14, -2, 3, 0, Math.PI * 2);
+                ctx.arc(12, -1, 2.5, 0, Math.PI * 2);
                 ctx.fill();
                 ctx.beginPath();
-                ctx.arc(22, -2, 3, 0, Math.PI * 2);
+                ctx.arc(18, -1, 2.5, 0, Math.PI * 2);
                 ctx.fill();
                 ctx.fillStyle = '#fff';
                 ctx.beginPath();
-                ctx.arc(13.5, -3, 1.2, 0, Math.PI * 2);
+                ctx.arc(11.5, -2, 1, 0, Math.PI * 2);
                 ctx.fill();
                 ctx.beginPath();
-                ctx.arc(21.5, -3, 1.2, 0, Math.PI * 2);
+                ctx.arc(17.5, -2, 1, 0, Math.PI * 2);
                 ctx.fill();
-                // Вымя
                 ctx.fillStyle = '#ffccbc';
                 ctx.beginPath();
-                ctx.ellipse(-4, 16, 6, 4, 0, 0, Math.PI * 2);
+                ctx.ellipse(-2, 13, 5, 3, 0, 0, Math.PI * 2);
                 ctx.fill();
                 ctx.fillStyle = '#ffab91';
                 ctx.beginPath();
-                ctx.arc(-7, 18, 2, 0, Math.PI * 2);
+                ctx.arc(-4, 14, 1.5, 0, Math.PI * 2);
                 ctx.fill();
                 ctx.beginPath();
-                ctx.arc(-2, 18, 2, 0, Math.PI * 2);
-                ctx.fill();
-                // Хвост
-                ctx.strokeStyle = '#fafafa';
-                ctx.lineWidth = 3;
-                ctx.beginPath();
-                ctx.moveTo(-22, -4);
-                ctx.quadraticCurveTo(-30, -10, -26, -16);
-                ctx.stroke();
-                ctx.fillStyle = '#424242';
-                ctx.beginPath();
-                ctx.arc(-26, -16, 4, 0, Math.PI * 2);
+                ctx.arc(0, 14, 1.5, 0, Math.PI * 2);
                 ctx.fill();
             }
             ctx.restore();
@@ -510,129 +500,101 @@
         function drawHelper(h) {
             ctx.save();
             ctx.translate(h.x, h.y);
-            // Тень
             ctx.fillStyle = 'rgba(0,0,0,0.15)';
             ctx.beginPath();
-            ctx.ellipse(0, 12, 14, 5, 0, 0, Math.PI * 2);
+            ctx.ellipse(0, 10, 12, 4, 0, 0, Math.PI * 2);
             ctx.fill();
 
             if (h.type === 'cat') {
-                // Тело
                 ctx.fillStyle = '#ff8a65';
                 ctx.beginPath();
-                ctx.ellipse(0, 0, 12, 10, 0, 0, Math.PI * 2);
+                ctx.ellipse(0, 0, 10, 8, 0, 0, Math.PI * 2);
                 ctx.fill();
-                // Голова
                 ctx.fillStyle = '#ffab91';
                 ctx.beginPath();
-                ctx.ellipse(0, -8, 10, 9, 0, 0, Math.PI * 2);
+                ctx.ellipse(0, -6, 8, 7, 0, 0, Math.PI * 2);
                 ctx.fill();
-                // Ушки
                 ctx.fillStyle = '#ff8a65';
                 ctx.beginPath();
-                ctx.moveTo(-8, -12);
-                ctx.lineTo(-4, -20);
-                ctx.lineTo(-1, -13);
+                ctx.moveTo(-6, -10);
+                ctx.lineTo(-3, -17);
+                ctx.lineTo(0, -11);
                 ctx.fill();
                 ctx.beginPath();
-                ctx.moveTo(8, -12);
-                ctx.lineTo(4, -20);
-                ctx.lineTo(1, -13);
+                ctx.moveTo(6, -10);
+                ctx.lineTo(3, -17);
+                ctx.lineTo(0, -11);
                 ctx.fill();
-                // Глаза
                 ctx.fillStyle = '#2e7d32';
                 ctx.beginPath();
-                ctx.arc(-4, -9, 3, 0, Math.PI * 2);
+                ctx.arc(-3, -7, 2.5, 0, Math.PI * 2);
                 ctx.fill();
                 ctx.beginPath();
-                ctx.arc(4, -9, 3, 0, Math.PI * 2);
+                ctx.arc(3, -7, 2.5, 0, Math.PI * 2);
                 ctx.fill();
                 ctx.fillStyle = '#000';
                 ctx.beginPath();
-                ctx.arc(-4, -8, 1.5, 0, Math.PI * 2);
+                ctx.arc(-3, -6, 1.2, 0, Math.PI * 2);
                 ctx.fill();
                 ctx.beginPath();
-                ctx.arc(4, -8, 1.5, 0, Math.PI * 2);
+                ctx.arc(3, -6, 1.2, 0, Math.PI * 2);
                 ctx.fill();
-                // Нос
                 ctx.fillStyle = '#e91e63';
                 ctx.beginPath();
-                ctx.arc(0, -6, 1.5, 0, Math.PI * 2);
+                ctx.arc(0, -4, 1.2, 0, Math.PI * 2);
                 ctx.fill();
-                // Полоски
                 ctx.strokeStyle = '#bf6a4a';
-                ctx.lineWidth = 1.5;
-                for (let i = -2; i <= 2; i++) {
+                ctx.lineWidth = 1.2;
+                for (let i = -1; i <= 1; i++) {
                     ctx.beginPath();
-                    ctx.moveTo(i * 3 - 2, -2);
-                    ctx.lineTo(i * 3, 6);
+                    ctx.moveTo(i * 2.5 - 2, -1);
+                    ctx.lineTo(i * 2.5, 4);
                     ctx.stroke();
                 }
-                // Хвост
-                ctx.strokeStyle = '#ff8a65';
-                ctx.lineWidth = 3;
-                ctx.beginPath();
-                ctx.moveTo(12, 0);
-                ctx.quadraticCurveTo(20, -8, 16, -14);
-                ctx.stroke();
             } else if (h.type === 'dog') {
-                // Тело
                 ctx.fillStyle = '#8d6e63';
                 ctx.beginPath();
-                ctx.ellipse(0, 0, 14, 11, 0, 0, Math.PI * 2);
+                ctx.ellipse(0, 0, 12, 9, 0, 0, Math.PI * 2);
                 ctx.fill();
-                // Голова
                 ctx.fillStyle = '#a1887f';
                 ctx.beginPath();
-                ctx.ellipse(0, -8, 11, 10, 0, 0, Math.PI * 2);
+                ctx.ellipse(0, -6, 9, 8, 0, 0, Math.PI * 2);
                 ctx.fill();
-                // Уши
                 ctx.fillStyle = '#6d4c41';
                 ctx.beginPath();
-                ctx.ellipse(-9, -6, 5, 8, -0.2, 0, Math.PI * 2);
+                ctx.ellipse(-7, -5, 4, 6, -0.2, 0, Math.PI * 2);
                 ctx.fill();
                 ctx.beginPath();
-                ctx.ellipse(9, -6, 5, 8, 0.2, 0, Math.PI * 2);
+                ctx.ellipse(7, -5, 4, 6, 0.2, 0, Math.PI * 2);
                 ctx.fill();
-                // Морда
                 ctx.fillStyle = '#d7ccc8';
                 ctx.beginPath();
-                ctx.ellipse(0, -4, 7, 5, 0, 0, Math.PI * 2);
+                ctx.ellipse(0, -3, 6, 4, 0, 0, Math.PI * 2);
                 ctx.fill();
-                // Нос
                 ctx.fillStyle = '#3e2723';
                 ctx.beginPath();
-                ctx.arc(0, -2, 2.5, 0, Math.PI * 2);
+                ctx.arc(0, -1, 2, 0, Math.PI * 2);
                 ctx.fill();
-                // Глаза
                 ctx.fillStyle = '#000';
                 ctx.beginPath();
-                ctx.arc(-5, -9, 2.5, 0, Math.PI * 2);
+                ctx.arc(-4, -7, 2, 0, Math.PI * 2);
                 ctx.fill();
                 ctx.beginPath();
-                ctx.arc(5, -9, 2.5, 0, Math.PI * 2);
+                ctx.arc(4, -7, 2, 0, Math.PI * 2);
                 ctx.fill();
                 ctx.fillStyle = '#fff';
                 ctx.beginPath();
-                ctx.arc(-5.5, -10, 1, 0, Math.PI * 2);
+                ctx.arc(-4.5, -8, 0.8, 0, Math.PI * 2);
                 ctx.fill();
                 ctx.beginPath();
-                ctx.arc(4.5, -10, 1, 0, Math.PI * 2);
+                ctx.arc(3.5, -8, 0.8, 0, Math.PI * 2);
                 ctx.fill();
-                // Ошейник
                 ctx.fillStyle = '#d32f2f';
-                ctx.fillRect(-8, -3, 16, 3);
+                ctx.fillRect(-6, -2, 12, 2.5);
                 ctx.fillStyle = '#ffd54f';
                 ctx.beginPath();
-                ctx.arc(0, -1.5, 2, 0, Math.PI * 2);
+                ctx.arc(0, -0.8, 1.5, 0, Math.PI * 2);
                 ctx.fill();
-                // Хвост
-                ctx.strokeStyle = '#8d6e63';
-                ctx.lineWidth = 4;
-                ctx.beginPath();
-                ctx.moveTo(14, -2);
-                ctx.quadraticCurveTo(22, -10, 18, -16);
-                ctx.stroke();
             }
             ctx.restore();
         }
@@ -641,90 +603,104 @@
             ctx.save();
             ctx.translate(b.x, b.y);
 
-            // Тень
-            ctx.fillStyle = 'rgba(0,0,0,0.25)';
+            ctx.fillStyle = 'rgba(0,0,0,0.2)';
             ctx.beginPath();
-            ctx.ellipse(0, 22, 22, 6, 0, 0, Math.PI * 2);
+            ctx.ellipse(0, 18, 18, 5, 0, 0, Math.PI * 2);
             ctx.fill();
 
-            // Тело
             ctx.fillStyle = '#5d4037';
             ctx.beginPath();
-            ctx.ellipse(0, 4, 20, 18, 0, 0, Math.PI * 2);
+            ctx.ellipse(0, 3, 17, 15, 0, 0, Math.PI * 2);
             ctx.fill();
-            // Голова
             ctx.fillStyle = '#6d4c41';
             ctx.beginPath();
-            ctx.ellipse(0, -12, 16, 14, 0, 0, Math.PI * 2);
+            ctx.ellipse(0, -10, 13, 11, 0, 0, Math.PI * 2);
             ctx.fill();
-            // Уши
             ctx.fillStyle = '#4e342e';
             ctx.beginPath();
-            ctx.arc(-12, -20, 6, 0, Math.PI * 2);
+            ctx.arc(-10, -16, 5, 0, Math.PI * 2);
             ctx.fill();
             ctx.beginPath();
-            ctx.arc(12, -20, 6, 0, Math.PI * 2);
+            ctx.arc(10, -16, 5, 0, Math.PI * 2);
             ctx.fill();
             ctx.fillStyle = '#795548';
             ctx.beginPath();
-            ctx.arc(-12, -20, 3, 0, Math.PI * 2);
+            ctx.arc(-10, -16, 2.5, 0, Math.PI * 2);
             ctx.fill();
             ctx.beginPath();
-            ctx.arc(12, -20, 3, 0, Math.PI * 2);
+            ctx.arc(10, -16, 2.5, 0, Math.PI * 2);
             ctx.fill();
-            // Морда
             ctx.fillStyle = '#d7ccc8';
             ctx.beginPath();
-            ctx.ellipse(0, -8, 10, 8, 0, 0, Math.PI * 2);
+            ctx.ellipse(0, -6, 8, 6, 0, 0, Math.PI * 2);
             ctx.fill();
-            // Нос
             ctx.fillStyle = '#3e2723';
             ctx.beginPath();
-            ctx.arc(0, -6, 3.5, 0, Math.PI * 2);
+            ctx.arc(0, -4, 3, 0, Math.PI * 2);
             ctx.fill();
-            // Глаза
             ctx.fillStyle = '#000';
             ctx.beginPath();
-            ctx.arc(-7, -14, 2.5, 0, Math.PI * 2);
+            ctx.arc(-5, -11, 2, 0, Math.PI * 2);
             ctx.fill();
             ctx.beginPath();
-            ctx.arc(7, -14, 2.5, 0, Math.PI * 2);
+            ctx.arc(5, -11, 2, 0, Math.PI * 2);
             ctx.fill();
             ctx.fillStyle = '#fff';
             ctx.beginPath();
-            ctx.arc(-7.5, -15, 1, 0, Math.PI * 2);
+            ctx.arc(-5.5, -12, 0.8, 0, Math.PI * 2);
             ctx.fill();
             ctx.beginPath();
-            ctx.arc(6.5, -15, 1, 0, Math.PI * 2);
+            ctx.arc(4.5, -12, 0.8, 0, Math.PI * 2);
             ctx.fill();
-            // Лапы
             ctx.fillStyle = '#4e342e';
             ctx.beginPath();
-            ctx.ellipse(-14, 12, 5, 8, 0, 0, Math.PI * 2);
+            ctx.ellipse(-12, 10, 4, 6, 0, 0, Math.PI * 2);
             ctx.fill();
             ctx.beginPath();
-            ctx.ellipse(14, 12, 5, 8, 0, 0, Math.PI * 2);
+            ctx.ellipse(12, 10, 4, 6, 0, 0, Math.PI * 2);
             ctx.fill();
 
-            // Клетка вокруг медведя
+            // Клетка
             if (b.clicks > 0) {
-                const size = 36 - b.clicks * 10;
+                const size = 30 - b.clicks * 8;
                 ctx.strokeStyle = '#ffd54f';
-                ctx.lineWidth = 3;
-                ctx.setLineDash([4, 6]);
+                ctx.lineWidth = 2;
+                ctx.setLineDash([3, 4]);
                 ctx.strokeRect(-size / 2, -size / 2 - 4, size, size);
                 ctx.setLineDash([]);
-                // Блеск клетки
-                ctx.fillStyle = 'rgba(255, 213, 79, 0.15)';
+                ctx.fillStyle = 'rgba(255, 213, 79, 0.1)';
                 ctx.fillRect(-size / 2, -size / 2 - 4, size, size);
+
+                // Вертикальные прутья
+                ctx.strokeStyle = '#ffd54f';
+                ctx.lineWidth = 1.5;
+                for (let i = -size / 2 + 4; i < size / 2; i += 6) {
+                    ctx.beginPath();
+                    ctx.moveTo(i, -size / 2 - 4);
+                    ctx.lineTo(i, size / 2 - 4);
+                    ctx.stroke();
+                }
+                // Горизонтальные
+                for (let i = -size / 2 - 4 + 6; i < size / 2 - 4; i += 6) {
+                    ctx.beginPath();
+                    ctx.moveTo(-size / 2, i);
+                    ctx.lineTo(size / 2, i);
+                    ctx.stroke();
+                }
+                // Замок
+                ctx.fillStyle = '#ffd54f';
+                ctx.fillRect(-2, -size / 2 - 6, 4, 4);
+                ctx.fillStyle = '#f9a825';
+                ctx.beginPath();
+                ctx.arc(0, -size / 2 - 4, 2, 0, Math.PI * 2);
+                ctx.fill();
             }
 
-            // Значок кликов
             if (b.clicks > 0 && b.clicks < 3) {
                 ctx.fillStyle = '#fff';
-                ctx.font = 'bold 12px Arial';
+                ctx.font = 'bold 10px Arial';
                 ctx.textAlign = 'center';
-                ctx.fillText(`${b.clicks}/3`, 0, -30);
+                ctx.fillText(`${b.clicks}/3`, 0, -24);
             }
 
             ctx.restore();
@@ -734,148 +710,57 @@
             ctx.save();
             ctx.translate(item.x, item.y);
 
-            // Свечение
-            const grad = ctx.createRadialGradient(0, 0, 2, 0, 0, 16);
-            grad.addColorStop(0, 'rgba(255,255,255,0.3)');
+            const grad = ctx.createRadialGradient(0, 0, 2, 0, 0, 14);
+            grad.addColorStop(0, 'rgba(255,255,255,0.2)');
             grad.addColorStop(1, 'rgba(255,255,255,0)');
             ctx.fillStyle = grad;
             ctx.beginPath();
-            ctx.arc(0, 0, 16, 0, Math.PI * 2);
+            ctx.arc(0, 0, 14, 0, Math.PI * 2);
             ctx.fill();
 
-            // Тень
-            ctx.fillStyle = 'rgba(0,0,0,0.15)';
+            ctx.fillStyle = 'rgba(0,0,0,0.12)';
             ctx.beginPath();
-            ctx.ellipse(0, 14, 12, 4, 0, 0, Math.PI * 2);
+            ctx.ellipse(0, 12, 10, 3, 0, 0, Math.PI * 2);
             ctx.fill();
 
-            if (item.type === 'egg') {
-                ctx.fillStyle = '#fff8e1';
-                ctx.beginPath();
-                ctx.ellipse(0, 0, 7, 10, 0.1, 0, Math.PI * 2);
-                ctx.fill();
-                ctx.strokeStyle = '#e0d5b0';
-                ctx.lineWidth = 1;
-                ctx.stroke();
-            } else if (item.type === 'powder') {
-                ctx.fillStyle = '#fff9c4';
-                ctx.shadowColor = '#fff';
-                ctx.shadowBlur = 5;
-                ctx.fillRect(-8, -8, 16, 16);
-                ctx.shadowBlur = 0;
-                ctx.strokeStyle = '#f9a825';
-                ctx.lineWidth = 1.5;
-                ctx.strokeRect(-8, -8, 16, 16);
-            } else if (item.type === 'cake') {
-                ctx.fillStyle = '#f48fb1';
-                ctx.beginPath();
-                ctx.arc(0, 2, 9, 0, Math.PI * 2);
-                ctx.fill();
-                ctx.fillStyle = '#f06292';
-                ctx.beginPath();
-                ctx.arc(0, 0, 5, 0, Math.PI * 2);
-                ctx.fill();
-                // Свечка
-                ctx.fillStyle = '#ffd54f';
-                ctx.fillRect(-1, -10, 2, 6);
-                ctx.fillStyle = '#ff6f00';
-                ctx.beginPath();
-                ctx.arc(0, -11, 2.5, 0, Math.PI * 2);
-                ctx.fill();
-            } else if (item.type === 'meat') {
-                ctx.fillStyle = '#ef5350';
-                ctx.beginPath();
-                ctx.ellipse(0, 0, 10, 7, 0, 0, Math.PI * 2);
-                ctx.fill();
-                ctx.fillStyle = '#c62828';
-                ctx.beginPath();
-                ctx.ellipse(-2, -1, 4, 3, 0, 0, Math.PI * 2);
-                ctx.fill();
-                ctx.beginPath();
-                ctx.ellipse(4, 2, 3, 2, 0, 0, Math.PI * 2);
-                ctx.fill();
-            } else if (item.type === 'milk') {
-                ctx.fillStyle = '#eceff1';
-                ctx.fillRect(-5, -8, 10, 14);
-                ctx.fillStyle = '#bdbdbd';
-                ctx.fillRect(-3, -10, 6, 3);
-                ctx.strokeStyle = '#90a4ae';
-                ctx.lineWidth = 1;
-                ctx.strokeRect(-5, -8, 10, 14);
-            } else if (item.type === 'bear') {
-                ctx.fillStyle = '#4e342e';
-                ctx.fillRect(-12, -12, 24, 24);
-                ctx.strokeStyle = '#ffd54f';
-                ctx.lineWidth = 2;
-                ctx.strokeRect(-12, -12, 24, 24);
-                ctx.fillStyle = '#ffd54f';
-                ctx.font = 'bold 14px Arial';
+            const emojis = {
+                egg: '🥚',
+                powder: '🧂',
+                cake: '🧁',
+                meat: '🥩',
+                mince: '🍖',
+                delicacy: '🍽️',
+                milk: '🥛',
+                butter: '🧈',
+                cheese: '🧀',
+                bear: '🐻'
+            };
+            const colors = {
+                egg: '#fff8e1',
+                powder: '#fff9c4',
+                cake: '#f48fb1',
+                meat: '#ef5350',
+                mince: '#d32f2f',
+                delicacy: '#7b1fa2',
+                milk: '#eceff1',
+                butter: '#ffd54f',
+                cheese: '#ffd54f',
+                bear: '#4e342e'
+            };
+
+            if (item.type in emojis) {
+                ctx.font = '20px Arial';
                 ctx.textAlign = 'center';
-                ctx.fillText('🐻', 0, 4);
-            } else if (item.type === 'mince') {
-                ctx.fillStyle = '#d32f2f';
-                ctx.beginPath();
-                ctx.arc(0, 0, 9, 0, Math.PI * 2);
-                ctx.fill();
-                ctx.fillStyle = '#b71c1c';
-                for (let i = 0; i < 6; i++) {
-                    const angle = i * 1.05;
-                    ctx.beginPath();
-                    ctx.arc(Math.cos(angle) * 5, Math.sin(angle) * 5, 2, 0, Math.PI * 2);
-                    ctx.fill();
-                }
-            } else if (item.type === 'delicacy') {
-                ctx.fillStyle = '#7b1fa2';
-                ctx.beginPath();
-                ctx.arc(0, 0, 10, 0, Math.PI * 2);
-                ctx.fill();
-                ctx.fillStyle = '#ce93d8';
-                ctx.beginPath();
-                ctx.arc(0, 0, 6, 0, Math.PI * 2);
-                ctx.fill();
-                ctx.fillStyle = '#e1bee7';
-                ctx.beginPath();
-                ctx.arc(0, 0, 3, 0, Math.PI * 2);
-                ctx.fill();
-            } else if (item.type === 'butter') {
-                ctx.fillStyle = '#ffd54f';
-                ctx.fillRect(-8, -6, 16, 12);
-                ctx.fillStyle = '#ffca28';
-                ctx.fillRect(-6, -4, 12, 8);
-                ctx.strokeStyle = '#f9a825';
-                ctx.lineWidth = 1;
-                ctx.strokeRect(-8, -6, 16, 12);
-            } else if (item.type === 'cheese') {
-                ctx.fillStyle = '#ffd54f';
-                ctx.beginPath();
-                ctx.moveTo(-8, 8);
-                ctx.lineTo(8, 8);
-                ctx.lineTo(10, -4);
-                ctx.lineTo(6, -8);
-                ctx.lineTo(-6, -8);
-                ctx.lineTo(-10, -4);
-                ctx.closePath();
-                ctx.fill();
-                ctx.strokeStyle = '#f9a825';
-                ctx.lineWidth = 1.5;
-                ctx.stroke();
-                // Дырки
-                ctx.fillStyle = '#ffca28';
-                for (let d of [
-                        [-3, 0],
-                        [4, 1],
-                        [-1, 4],
-                        [5, -2]
-                    ]) {
-                    ctx.beginPath();
-                    ctx.arc(d[0], d[1], 2, 0, Math.PI * 2);
-                    ctx.fill();
-                }
+                ctx.textBaseline = 'middle';
+                ctx.fillText(emojis[item.type], 0, 0);
             } else {
-                ctx.fillStyle = '#ce93d8';
+                ctx.fillStyle = colors[item.type] || '#ce93d8';
                 ctx.beginPath();
                 ctx.arc(0, 0, 8, 0, Math.PI * 2);
                 ctx.fill();
+                ctx.strokeStyle = '#fff';
+                ctx.lineWidth = 1;
+                ctx.stroke();
             }
 
             ctx.restore();
@@ -885,56 +770,120 @@
             ctx.save();
             ctx.translate(f.x, f.y);
 
-            // Здание
+            // Тень
+            ctx.fillStyle = 'rgba(0,0,0,0.15)';
+            ctx.fillRect(2, 4, f.w, f.h);
+
+            // Стены
             ctx.fillStyle = '#78909c';
             ctx.fillRect(0, 0, f.w, f.h);
             // Крыша
             ctx.fillStyle = '#546e7a';
             ctx.beginPath();
-            ctx.moveTo(-4, 0);
-            ctx.lineTo(f.w / 2, -14);
-            ctx.lineTo(f.w + 4, 0);
+            ctx.moveTo(-3, 0);
+            ctx.lineTo(f.w / 2, -12);
+            ctx.lineTo(f.w + 3, 0);
             ctx.fill();
-            // Дымовая труба
+            // Труба
             ctx.fillStyle = '#455a64';
-            ctx.fillRect(f.w - 12, -18, 8, 10);
+            ctx.fillRect(f.w - 10, -16, 6, 8);
+            if (f.working) {
+                ctx.fillStyle = 'rgba(200,200,200,0.3)';
+                for (let i = 0; i < 3; i++) {
+                    const dy = -16 - i * 5 - (f.progress / 5) % 5;
+                    ctx.beginPath();
+                    ctx.arc(f.w - 7 + (i - 1) * 3, dy, 3 + i * 2, 0, Math.PI * 2);
+                    ctx.fill();
+                }
+            }
             // Окна
             ctx.fillStyle = '#b3e5fc';
-            for (let i = 0; i < 3; i++) {
-                ctx.fillRect(8 + i * 20, 12, 12, 14);
-                ctx.fillStyle = 'rgba(179, 229, 252, 0.3)';
-                ctx.fillRect(8 + i * 20 + 2, 14, 4, 4);
+            for (let i = 0; i < 2; i++) {
+                ctx.fillRect(6 + i * 24, 10, 14, 12);
+                ctx.fillStyle = 'rgba(179, 229, 252, 0.2)';
+                ctx.fillRect(8 + i * 24, 12, 4, 3);
                 ctx.fillStyle = '#b3e5fc';
             }
             // Дверь
             ctx.fillStyle = '#37474f';
-            ctx.fillRect(f.w / 2 - 6, f.h - 14, 12, 14);
+            ctx.fillRect(f.w / 2 - 5, f.h - 12, 10, 12);
             ctx.fillStyle = '#ffd54f';
             ctx.beginPath();
-            ctx.arc(f.w / 2 + 4, f.h - 7, 1.5, 0, Math.PI * 2);
+            ctx.arc(f.w / 2 + 3, f.h - 6, 1.2, 0, Math.PI * 2);
             ctx.fill();
 
-            // Название
             ctx.fillStyle = '#fff';
-            ctx.font = 'bold 7px Arial';
+            ctx.font = 'bold 6px Arial';
             ctx.textAlign = 'center';
-            ctx.fillText(f.name, f.w / 2, f.h + 12);
+            ctx.fillText(f.name, f.w / 2, f.h + 10);
 
-            // Прогресс
             if (f.working) {
-                ctx.fillStyle = 'rgba(0,0,0,0.5)';
-                ctx.fillRect(4, f.h - 6, f.w - 8, 4);
+                ctx.fillStyle = 'rgba(0,0,0,0.4)';
+                ctx.fillRect(2, f.h - 4, f.w - 4, 3);
                 ctx.fillStyle = '#ffd54f';
-                ctx.fillRect(4, f.h - 6, (f.progress / 100) * (f.w - 8), 4);
-                // Анимация дыма
-                ctx.fillStyle = 'rgba(200,200,200,0.3)';
-                for (let i = 0; i < 3; i++) {
-                    const dy = -14 - i * 6 - (f.progress / 10) % 6;
-                    ctx.beginPath();
-                    ctx.arc(f.w - 8 + (i - 1) * 4, dy, 4 + i * 2, 0, Math.PI * 2);
-                    ctx.fill();
-                }
+                ctx.fillRect(2, f.h - 4, (f.progress / 100) * (f.w - 4), 3);
             }
+
+            // Входной материал
+            ctx.fillStyle = 'rgba(255,255,255,0.15)';
+            ctx.font = '5px Arial';
+            ctx.fillText('←' + f.input, 2, f.h - 2);
+
+            ctx.restore();
+        }
+
+        function drawWell(w) {
+            ctx.save();
+            ctx.translate(w.x, w.y);
+
+            // Тень
+            ctx.fillStyle = 'rgba(0,0,0,0.15)';
+            ctx.beginPath();
+            ctx.ellipse(16, 32, 20, 6, 0, 0, Math.PI * 2);
+            ctx.fill();
+
+            // Основание
+            ctx.fillStyle = '#8d6e63';
+            ctx.fillRect(0, 18, 32, 14);
+            ctx.fillStyle = '#6d4c41';
+            for (let i = 0; i < 32; i += 6) {
+                ctx.fillRect(i, 18, 3, 14);
+            }
+            // Столбы
+            ctx.fillStyle = '#5d4037';
+            ctx.fillRect(0, 0, 4, 22);
+            ctx.fillRect(28, 0, 4, 22);
+            // Крыша
+            ctx.fillStyle = '#4e342e';
+            ctx.beginPath();
+            ctx.moveTo(-2, 0);
+            ctx.lineTo(16, -14);
+            ctx.lineTo(34, 0);
+            ctx.fill();
+            ctx.fillStyle = '#795548';
+            ctx.fillRect(4, -10, 24, 4);
+            // Ведро
+            ctx.fillStyle = '#616161';
+            ctx.fillRect(12, 14, 8, 8);
+            ctx.fillStyle = '#757575';
+            ctx.fillRect(13, 15, 6, 6);
+            // Вода в ведре
+            if (w.hasWater) {
+                ctx.fillStyle = 'rgba(66, 165, 245, 0.6)';
+                ctx.fillRect(14, 16, 4, 4);
+            }
+            // Цепь
+            ctx.strokeStyle = '#9e9e9e';
+            ctx.lineWidth = 1;
+            ctx.beginPath();
+            ctx.moveTo(16, 0);
+            ctx.lineTo(16, 14);
+            ctx.stroke();
+
+            ctx.fillStyle = '#fff';
+            ctx.font = 'bold 5px Arial';
+            ctx.textAlign = 'center';
+            ctx.fillText('💧', 16, 10);
 
             ctx.restore();
         }
@@ -943,40 +892,56 @@
             ctx.save();
             ctx.translate(t.x, t.y);
 
-            // Кабина
-            ctx.fillStyle = '#1565c0';
-            ctx.fillRect(0, -8, 20, 20);
-            ctx.fillStyle = '#0d47a1';
-            ctx.fillRect(2, -5, 8, 12);
-            // Окно
-            ctx.fillStyle = '#b3e5fc';
-            ctx.fillRect(12, -5, 6, 8);
+            // Тень
+            ctx.fillStyle = 'rgba(0,0,0,0.2)';
+            ctx.beginPath();
+            ctx.ellipse(30, 20, 35, 6, 0, 0, Math.PI * 2);
+            ctx.fill();
+
             // Кузов
             ctx.fillStyle = '#1a237e';
-            ctx.fillRect(20, -10, 40, 24);
-            // Колеса
-            ctx.fillStyle = '#212121';
-            ctx.beginPath();
-            ctx.arc(10, 16, 6, 0, Math.PI * 2);
-            ctx.fill();
-            ctx.beginPath();
-            ctx.arc(44, 16, 6, 0, Math.PI * 2);
-            ctx.fill();
-            ctx.fillStyle = '#424242';
-            ctx.beginPath();
-            ctx.arc(10, 16, 3, 0, Math.PI * 2);
-            ctx.fill();
-            ctx.beginPath();
-            ctx.arc(44, 16, 3, 0, Math.PI * 2);
-            ctx.fill();
+            ctx.fillRect(16, -12, 44, 22);
             // Груз
             if (t.load > 0) {
                 ctx.fillStyle = '#ffd54f';
-                ctx.fillRect(24, -6, 8, 8);
-                ctx.fillRect(36, -6, 8, 8);
+                ctx.fillRect(20, -8, 8, 6);
+                ctx.fillRect(32, -8, 8, 6);
+                ctx.fillRect(44, -8, 8, 6);
                 ctx.fillStyle = '#ff8a65';
-                ctx.fillRect(30, -10, 8, 8);
+                ctx.fillRect(26, -12, 8, 6);
+                ctx.fillRect(38, -12, 8, 6);
             }
+            // Кабина
+            ctx.fillStyle = '#1565c0';
+            ctx.fillRect(-6, -10, 22, 20);
+            ctx.fillStyle = '#0d47a1';
+            ctx.fillRect(-4, -8, 8, 14);
+            // Окно
+            ctx.fillStyle = '#b3e5fc';
+            ctx.fillRect(4, -6, 8, 10);
+            // Фары
+            ctx.fillStyle = '#ffd54f';
+            ctx.beginPath();
+            ctx.arc(-4, 6, 2, 0, Math.PI * 2);
+            ctx.fill();
+            ctx.beginPath();
+            ctx.arc(-4, -2, 2, 0, Math.PI * 2);
+            ctx.fill();
+            // Колеса
+            ctx.fillStyle = '#212121';
+            ctx.beginPath();
+            ctx.arc(6, 14, 6, 0, Math.PI * 2);
+            ctx.fill();
+            ctx.beginPath();
+            ctx.arc(44, 14, 6, 0, Math.PI * 2);
+            ctx.fill();
+            ctx.fillStyle = '#424242';
+            ctx.beginPath();
+            ctx.arc(6, 14, 3, 0, Math.PI * 2);
+            ctx.fill();
+            ctx.beginPath();
+            ctx.arc(44, 14, 3, 0, Math.PI * 2);
+            ctx.fill();
 
             ctx.restore();
         }
@@ -985,160 +950,185 @@
             ctx.save();
             ctx.translate(p.x, p.y);
 
+            // Тень
+            ctx.fillStyle = 'rgba(0,0,0,0.15)';
+            ctx.beginPath();
+            ctx.ellipse(0, 12, 40, 6, 0, 0, Math.PI * 2);
+            ctx.fill();
+
             // Фюзеляж
             ctx.fillStyle = '#eceff1';
             ctx.beginPath();
-            ctx.ellipse(0, 0, 35, 10, 0, 0, Math.PI * 2);
+            ctx.ellipse(0, 0, 32, 8, 0, 0, Math.PI * 2);
             ctx.fill();
             // Крылья
             ctx.fillStyle = '#90a4ae';
-            ctx.fillRect(-20, -22, 40, 6);
-            ctx.fillRect(-20, 16, 40, 6);
+            ctx.fillRect(-18, -18, 36, 5);
+            ctx.fillRect(-18, 13, 36, 5);
             // Хвост
             ctx.fillStyle = '#78909c';
-            ctx.fillRect(30, -12, 8, 24);
-            ctx.fillRect(30, -16, 6, 8);
-            ctx.fillRect(30, 8, 6, 8);
+            ctx.fillRect(28, -10, 6, 20);
+            ctx.fillRect(28, -14, 4, 6);
+            ctx.fillRect(28, 8, 4, 6);
             // Окна
             ctx.fillStyle = '#b3e5fc';
-            for (let i = -3; i <= 3; i++) {
+            for (let i = -2; i <= 2; i++) {
                 ctx.beginPath();
-                ctx.arc(i * 6, 0, 3, 0, Math.PI * 2);
+                ctx.arc(i * 7, 0, 2.5, 0, Math.PI * 2);
                 ctx.fill();
             }
             // Двигатель
             ctx.fillStyle = '#616161';
             ctx.beginPath();
-            ctx.arc(-32, 0, 6, 0, Math.PI * 2);
+            ctx.arc(-30, 0, 5, 0, Math.PI * 2);
             ctx.fill();
             ctx.fillStyle = '#9e9e9e';
             ctx.beginPath();
-            ctx.arc(-32, 0, 3, 0, Math.PI * 2);
+            ctx.arc(-30, 0, 2.5, 0, Math.PI * 2);
             ctx.fill();
+            // Огонь из двигателя
+            if (p.flying) {
+                ctx.fillStyle = 'rgba(255, 165, 0, 0.3)';
+                ctx.beginPath();
+                ctx.moveTo(-34, -3);
+                ctx.quadraticCurveTo(-44, 0, -34, 3);
+                ctx.fill();
+                ctx.fillStyle = 'rgba(255, 200, 0, 0.2)';
+                ctx.beginPath();
+                ctx.moveTo(-36, -2);
+                ctx.quadraticCurveTo(-48, 0, -36, 2);
+                ctx.fill();
+            }
 
             ctx.restore();
         }
 
         function drawParticle(p) {
             ctx.save();
-            ctx.globalAlpha = p.life / 100;
+            ctx.globalAlpha = p.life / p.maxLife;
             ctx.fillStyle = p.color;
             ctx.beginPath();
-            ctx.arc(p.x, p.y, p.size * (p.life / 100), 0, Math.PI * 2);
+            ctx.arc(p.x, p.y, p.size * (p.life / p.maxLife), 0, Math.PI * 2);
             ctx.fill();
+            ctx.restore();
+        }
+
+        function drawFlyingAnimal(fa) {
+            ctx.save();
+            ctx.translate(fa.x, fa.y);
+            ctx.rotate(fa.rotation);
+
+            ctx.fillStyle = 'rgba(0,0,0,0.15)';
+            ctx.beginPath();
+            ctx.ellipse(0, 16, 12, 4, 0, 0, Math.PI * 2);
+            ctx.fill();
+
+            // Животное в полёте
+            ctx.font = '24px Arial';
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'middle';
+            const emojis = { chicken: '🐔', pig: '🐷', cow: '🐮' };
+            ctx.fillText(emojis[fa.type] || '🐔', 0, 0);
+
+            // Звёздочки для эффекта
+            for (let i = 0; i < 3; i++) {
+                const angle = fa.rotation + i * 2.1;
+                ctx.fillStyle = `rgba(255, 215, 0, ${0.3 + Math.random() * 0.3})`;
+                ctx.font = '8px Arial';
+                ctx.fillText('✦', Math.cos(angle) * 18, Math.sin(angle) * 18);
+            }
+
             ctx.restore();
         }
 
         // ------ ЛОГИКА ------
 
-        // Добавление частиц
-        function addParticles(x, y, color, count = 10) {
-            for (let i = 0; i < count; i++) {
-                particles.push({
-                    x: x + (Math.random() - 0.5) * 20,
-                    y: y + (Math.random() - 0.5) * 20,
-                    vx: (Math.random() - 0.5) * 4,
-                    vy: (Math.random() - 0.5) * 4 - 1,
-                    life: 60 + Math.random() * 40,
-                    maxLife: 100,
-                    size: 2 + Math.random() * 4,
-                    color: color
-                });
+        function buildWell() {
+            if (!gameActive || levelComplete) return;
+            if (money >= 100 && wells.length < 2) {
+                money -= 100;
+                const x = 20 + wells.length * 150;
+                const y = 70 + Math.random() * (canvas.height - 200);
+                wells.push({ x, y, hasWater: true, timer: 0 });
+                addParticles(x + 16, y + 10, '#42a5f5', 12);
+                updateUI();
             }
         }
 
-        // Покупка животных
+        function buildFactory() {
+            if (!gameActive || levelComplete) return;
+            if (money >= 1500 && factories.length < 3) {
+                money -= 1500;
+                const idx = factories.length;
+                const x = 20 + idx * (canvas.width / 3.5);
+                const y = 70 + Math.random() * (canvas.height - 200);
+                factories.push({
+                    id: 'f_' + factoryTypes[idx],
+                    name: factoryNames[idx],
+                    input: factoryInputs[idx],
+                    output: factoryTypes[idx],
+                    x: x,
+                    y: y,
+                    w: 50,
+                    h: 40,
+                    built: true,
+                    working: false,
+                    progress: 0
+                });
+                addParticles(x + 25, y + 20, '#78909c', 15);
+                updateUI();
+            }
+        }
+
         function buyAnimal(type) {
             if (!gameActive || levelComplete) return;
-            const cost = type === 'chicken' ? 120 : type === 'pig' ? 1200 : 12000;
+            const cost = type === 'chicken' ? 80 : type === 'pig' ? 800 : 8000;
             if (money >= cost) {
                 money -= cost;
-                const x = 50 + Math.random() * (canvas.width - 160);
-                const y = 80 + Math.random() * (canvas.height - 200);
+                const x = 60 + Math.random() * (canvas.width - 140);
+                const y = 80 + Math.random() * (canvas.height - 180);
                 animals.push({
                     type,
                     x,
                     y,
                     timer: 0,
-                    targetX: x,
-                    targetY: y
+                    eatTimer: 0,
+                    isEating: false
                 });
-                addParticles(x, y, '#ffd54f', 8);
+                addParticles(x, y, '#ffd54f', 10);
                 updateUI();
             }
         }
 
-        // Покупка помощников
         function buyHelper(type) {
             if (!gameActive || levelComplete) return;
-            if (money >= 3000) {
-                money -= 3000;
-                const x = canvas.width / 2 + (Math.random() - 0.5) * 100;
-                const y = canvas.height / 2 + (Math.random() - 0.5) * 100;
+            if (money >= 2500) {
+                money -= 2500;
+                const x = canvas.width / 2 + (Math.random() - 0.5) * 80;
+                const y = canvas.height / 2 + (Math.random() - 0.5) * 80;
                 helpers.push({ type, x, y });
-                addParticles(x, y, '#66bb6a', 10);
+                addParticles(x, y, '#66bb6a', 12);
                 updateUI();
             }
         }
 
-        // Покупка завода
-        function buyFactory() {
-            if (!gameActive || levelComplete) return;
-            if (money >= 2000 && factories.length < 3) {
-                money -= 2000;
-                const types = ['powder', 'mince', 'butter'];
-                const names = ['Порошок', 'Фарш', 'Масло'];
-                const inputs = ['egg', 'meat', 'milk'];
-                const idx = factories.length;
-                const x = 20 + idx * (canvas.width / 3);
-                const y = 80 + Math.random() * (canvas.height - 220);
-                factories.push({
-                    id: 'f_' + types[idx],
-                    name: names[idx],
-                    input: inputs[idx],
-                    output: types[idx],
-                    x: x,
-                    y: y,
-                    w: 60,
-                    h: 50,
-                    built: true,
-                    working: false,
-                    progress: 0,
-                    timer: 0
-                });
-                addParticles(x + 30, y + 25, '#78909c', 15);
-                updateUI();
-            }
-        }
-
-        // Обновление склада
         function upgradeStorage() {
             if (!gameActive || levelComplete) return;
-            if (money >= 500) {
-                money -= 500;
+            if (money >= 400) {
+                money -= 400;
                 maxStorage += 5;
-                addParticles(canvas.width / 2, canvas.height / 2, '#42a5f5', 12);
+                addParticles(canvas.width / 2, canvas.height / 2, '#42a5f5', 15);
                 updateUI();
             }
         }
 
-        // Колодец
-        function refillWell() {
-            if (!gameActive || levelComplete) return;
-            if (money >= 25 && water < maxWater) {
-                money -= 25;
-                water = maxWater;
-                addParticles(30, 30, '#42a5f5', 8);
-                updateUI();
-            }
-        }
-
-        // Грузовик - продажа
         function sendTruck() {
             if (!gameActive || levelComplete) return;
-            if (warehouse.length === 0) return;
+            if (truckActive || warehouse.length === 0) return;
 
-            const count = Math.min(warehouse.length, 8);
+            truckActive = true;
+            truckTimer = 0;
+            const count = Math.min(warehouse.length, 6);
             let sum = 0;
             const sold = [];
             for (let i = 0; i < count; i++) {
@@ -1146,44 +1136,44 @@
                 sum += (PRICES[type] || 10);
                 sold.push(type);
             }
-            money += sum;
 
-            // Анимация грузовика
             trucks.push({
                 x: -60,
-                y: canvas.height - 42,
+                y: canvas.height - 40,
                 load: count,
-                targetX: canvas.width + 60
+                targetX: canvas.width + 60,
+                returning: false,
+                money: sum
             });
 
-            addParticles(canvas.width / 2, canvas.height - 30, '#ffd54f', 15);
+            addParticles(30, canvas.height - 40, '#ffd54f', 8);
             updateUI();
-            checkLevelGoal();
         }
 
-        // Самолет - заказ (восполняет воду и привозит случайный предмет)
         function sendPlane() {
             if (!gameActive || levelComplete) return;
-            if (money >= 100) {
-                money -= 100;
-                water = maxWater;
+            if (planeActive || money < 150) return;
 
-                // Прилетает самолет с предметом
-                const types = ['egg', 'meat', 'milk', 'powder'];
-                const type = types[Math.floor(Math.random() * types.length)];
-                planes.push({
-                    x: -60,
-                    y: 30 + Math.random() * 20,
-                    type: type,
-                    targetX: canvas.width + 60
-                });
+            planeActive = true;
+            planeTimer = 0;
+            money -= 150;
 
-                addParticles(60, 30, '#42a5f5', 12);
-                updateUI();
-            }
+            const types = ['egg', 'meat', 'milk', 'powder', 'cake'];
+            const type = types[Math.floor(Math.random() * types.length)];
+
+            planes.push({
+                x: -60,
+                y: 25 + Math.random() * 20,
+                type: type,
+                targetX: canvas.width + 60,
+                returning: false,
+                hasCargo: true
+            });
+
+            addParticles(30, 30, '#42a5f5', 10);
+            updateUI();
         }
 
-        // Проверка цели уровня
         function checkLevelGoal() {
             if (!gameActive || levelComplete) return;
             if (money >= levelGoal) {
@@ -1199,7 +1189,7 @@
                     if (level < 90) {
                         level++;
                         timer = 60;
-                        levelGoal = Math.floor(levelGoal * 1.25 + 1000);
+                        levelGoal = Math.floor(levelGoal * 1.2 + 800);
                         warehouse = [];
                         animals = [];
                         helpers = [];
@@ -1211,13 +1201,26 @@
                         levelComplete = false;
                         updateUI();
                     } else {
-                        alert('🎉 Вы прошли все 90 уровней! Поздравляем!');
+                        alert('🎉 Поздравляем! Вы прошли все 90 уровней!');
                     }
-                }, 2000);
+                }, 2500);
             }
         }
 
-        // ------ ОБНОВЛЕНИЕ UI ------
+        function addParticles(x, y, color, count = 8) {
+            for (let i = 0; i < count; i++) {
+                particles.push({
+                    x: x + (Math.random() - 0.5) * 16,
+                    y: y + (Math.random() - 0.5) * 16,
+                    vx: (Math.random() - 0.5) * 3,
+                    vy: (Math.random() - 0.5) * 3 - 1,
+                    life: 40 + Math.random() * 30,
+                    maxLife: 70,
+                    size: 2 + Math.random() * 3,
+                    color: color
+                });
+            }
+        }
 
         function updateUI() {
             document.getElementById('money').innerText = money;
@@ -1228,16 +1231,32 @@
             document.getElementById('goal-money').innerText = levelGoal;
             document.getElementById('timer').innerText = Math.ceil(timer);
 
-            // Обновление кнопок
+            // Отображение склада
+            const storageDiv = document.getElementById('storage-display');
+            const counts = {};
+            warehouse.forEach(item => { counts[item] = (counts[item] || 0) + 1; });
+            storageDiv.innerHTML = Object.entries(counts).map(([type, count]) =>
+                `<span class="storage-item">${type}×${count}</span>`
+            ).join('');
+
             document.querySelectorAll('.shop-btn').forEach(btn => {
                 btn.classList.remove('disabled');
-                if (btn.textContent.includes('Курица') && money < 120) btn.classList.add('disabled');
-                if (btn.textContent.includes('Свинья') && money < 1200) btn.classList.add('disabled');
-                if (btn.textContent.includes('Корова') && money < 12000) btn.classList.add('disabled');
-                if (btn.textContent.includes('Кот') && money < 3000) btn.classList.add('disabled');
-                if (btn.textContent.includes('Пёс') && money < 3000) btn.classList.add('disabled');
-                if (btn.textContent.includes('Завод') && (money < 2000 || factories.length >= 3)) btn.classList.add(
-                'disabled');
+                if (btn.textContent.includes('Курица') && money < 80) btn.classList.add('disabled');
+                if (btn.textContent.includes('Свинья') && money < 800) btn.classList.add('disabled');
+                if (btn.textContent.includes('Корова') && money < 8000) btn.classList.add('disabled');
+                if (btn.textContent.includes('Кот') && money < 2500) btn.classList.add('disabled');
+                if (btn.textContent.includes('Пёс') && money < 2500) btn.classList.add('disabled');
+            });
+
+            // Кнопки построек
+            document.querySelectorAll('.action-btn.brown').forEach(btn => {
+                btn.style.opacity = '1';
+                if (btn.textContent.includes('Колодец') && (money < 100 || wells.length >= 2)) {
+                    btn.style.opacity = '0.4';
+                }
+                if (btn.textContent.includes('Завод') && (money < 1500 || factories.length >= 3)) {
+                    btn.style.opacity = '0.4';
+                }
             });
         }
 
@@ -1249,14 +1268,13 @@
                 if (timer <= 0) {
                     timer = 0;
                     gameActive = false;
-                    // Штраф за неудачу
-                    money = Math.max(0, money - 200);
+                    money = Math.max(0, money - 300);
                     updateUI();
                     setTimeout(() => {
                         if (level < 90) {
                             level++;
                             timer = 60;
-                            levelGoal = Math.floor(levelGoal * 1.25 + 1000);
+                            levelGoal = Math.floor(levelGoal * 1.2 + 800);
                             warehouse = [];
                             animals = [];
                             helpers = [];
@@ -1284,10 +1302,23 @@
             const x = (e.clientX - rect.left) * scaleX;
             const y = (e.clientY - rect.top) * scaleY;
 
+            // Клик по колодцу - добыть воду
+            for (let w of wells) {
+                if (x >= w.x && x <= w.x + 32 && y >= w.y && y <= w.y + 32) {
+                    if (water < maxWater && w.hasWater) {
+                        water = Math.min(maxWater, water + 1);
+                        w.hasWater = false;
+                        w.timer = 0;
+                        addParticles(w.x + 16, w.y + 10, '#42a5f5', 8);
+                        updateUI();
+                    }
+                    return;
+                }
+            }
+
             // Клик по заводу
             for (let f of factories) {
                 if (x >= f.x && x <= f.x + f.w && y >= f.y && y <= f.y + f.h) {
-                    if (!f.built) return;
                     if (!f.working) {
                         const idx = warehouse.indexOf(f.input);
                         if (idx !== -1) {
@@ -1305,10 +1336,10 @@
             // Сбор предметов
             for (let i = items.length - 1; i >= 0; i--) {
                 const it = items[i];
-                if (Math.hypot(it.x - x, it.y - y) < 30) {
+                if (Math.hypot(it.x - x, it.y - y) < 25) {
                     if (warehouse.length < maxStorage) {
                         warehouse.push(it.type);
-                        addParticles(it.x, it.y, '#66bb6a', 6);
+                        addParticles(it.x, it.y, '#66bb6a', 5);
                         items.splice(i, 1);
                         updateUI();
                     }
@@ -1319,7 +1350,7 @@
             // Ловля медведей
             for (let i = bears.length - 1; i >= 0; i--) {
                 const b = bears[i];
-                if (Math.hypot(b.x - x, b.y - y) < 35) {
+                if (Math.hypot(b.x - x, b.y - y) < 30) {
                     b.clicks++;
                     addParticles(b.x, b.y, '#ffd54f', 4);
                     if (b.clicks >= 3) {
@@ -1327,58 +1358,96 @@
                             type: 'bear' });
                         addParticles(b.x, b.y, '#ff6b6b', 15);
                         bears.splice(i, 1);
+                        updateUI();
                     }
                     return;
                 }
             }
 
             // Полив травы
-            if (y > 70 && y < canvas.height - 70 && water > 0) {
+            if (y > 65 && y < canvas.height - 65 && water > 0) {
                 water--;
                 grasses.push({
-                    x: x + (Math.random() - 0.5) * 10,
-                    y: y + (Math.random() - 0.5) * 10,
+                    x: x + (Math.random() - 0.5) * 8,
+                    y: y + (Math.random() - 0.5) * 8,
                     phase: Math.random() * Math.PI * 2,
                     age: 0
                 });
-                addParticles(x, y, '#4caf50', 5);
+                addParticles(x, y, '#4caf50', 4);
                 updateUI();
             }
         });
 
-        // ------ ОСНОВНОЙ ИГРОВОЙ ЦИКЛ ------
+        // ------ ОСНОВНОЙ ЦИКЛ ------
 
         function gameLoop() {
-            // Очистка
             ctx.clearRect(0, 0, canvas.width, canvas.height);
             drawBackground();
 
+            // Обновление колодцев
+            wells.forEach(w => {
+                w.timer += 1;
+                if (!w.hasWater && w.timer > 300) {
+                    w.hasWater = true;
+                    w.timer = 0;
+                    addParticles(w.x + 16, w.y + 10, '#42a5f5', 3);
+                }
+                drawWell(w);
+            });
+
             // Обновление животных
-            animals.forEach(a => {
+            const toRemove = [];
+            animals.forEach((a, idx) => {
                 // Поиск травы
-                if (grasses.length > 0) {
-                    let target = grasses[0];
-                    let dist = Math.hypot(target.x - a.x, target.y - a.y);
-                    if (dist > 10) {
-                        a.x += (target.x - a.x) / dist * 0.8;
-                        a.y += (target.y - a.y) / dist * 0.8;
+                let targetGrass = null;
+                let minDist = Infinity;
+                grasses.forEach(g => {
+                    const d = Math.hypot(g.x - a.x, g.y - a.y);
+                    if (d < minDist) { minDist = d;
+                        targetGrass = g; }
+                });
+
+                if (targetGrass && minDist < 80) {
+                    a.isEating = true;
+                    if (minDist > 5) {
+                        a.x += (targetGrass.x - a.x) / minDist * 0.6;
+                        a.y += (targetGrass.y - a.y) / minDist * 0.6;
                     } else {
-                        grasses.shift();
-                        addParticles(target.x, target.y, '#66bb6a', 4);
+                        // Ест траву
+                        a.eatTimer += 1;
+                        if (a.eatTimer > 40) {
+                            const idx2 = grasses.indexOf(targetGrass);
+                            if (idx2 !== -1) grasses.splice(idx2, 1);
+                            a.eatTimer = 0;
+                            addParticles(targetGrass.x, targetGrass.y, '#66bb6a', 3);
+                        }
+                    }
+                } else {
+                    a.isEating = false;
+                    a.eatTimer = 0;
+                    // Случайное движение
+                    if (Math.random() < 0.01) {
+                        a.x += (Math.random() - 0.5) * 10;
+                        a.y += (Math.random() - 0.5) * 10;
                     }
                 }
 
+                // Ограничение
+                a.x = Math.max(20, Math.min(canvas.width - 20, a.x));
+                a.y = Math.max(70, Math.min(canvas.height - 70, a.y));
+
                 // Производство продуктов
                 a.timer += 1;
-                const interval = a.type === 'chicken' ? 200 : a.type === 'pig' ? 300 : 400;
+                const interval = a.type === 'chicken' ? 350 : a.type === 'pig' ? 450 : 550;
                 if (a.timer > interval) {
                     const prod = a.type === 'chicken' ? 'egg' : a.type === 'pig' ? 'meat' : 'milk';
                     items.push({
-                        x: a.x + (Math.random() - 0.5) * 30,
-                        y: a.y + 15 + Math.random() * 10,
+                        x: a.x + (Math.random() - 0.5) * 20,
+                        y: a.y + 12 + Math.random() * 8,
                         type: prod
                     });
                     a.timer = 0;
+                    addParticles(a.x, a.y + 10, '#ffd54f', 4);
                 }
 
                 drawAnimal(a);
@@ -1390,8 +1459,8 @@
                     let target = items[0];
                     let dist = Math.hypot(target.x - h.x, target.y - h.y);
                     if (dist > 8) {
-                        h.x += (target.x - h.x) / dist * 1.8;
-                        h.y += (target.y - h.y) / dist * 1.8;
+                        h.x += (target.x - h.x) / dist * 1.5;
+                        h.y += (target.y - h.y) / dist * 1.5;
                     } else if (warehouse.length < maxStorage) {
                         warehouse.push(target.type);
                         addParticles(target.x, target.y, '#66bb6a', 4);
@@ -1402,30 +1471,32 @@
                     let target = bears[0];
                     let dist = Math.hypot(target.x - h.x, target.y - h.y);
                     if (dist > 10) {
-                        h.x += (target.x - h.x) / dist * 2.2;
-                        h.y += (target.y - h.y) / dist * 2.2;
+                        h.x += (target.x - h.x) / dist * 2;
+                        h.y += (target.y - h.y) / dist * 2;
                     } else {
-                        // Пёс пугает медведя - медведь убегает
-                        target.x += (Math.random() - 0.5) * 8;
-                        target.y += (Math.random() - 0.5) * 8 - 3;
-                        target.x = Math.max(50, Math.min(canvas.width - 50, target.x));
-                        target.y = Math.max(80, Math.min(canvas.height - 80, target.y));
+                        target.x += (Math.random() - 0.5) * 10;
+                        target.y += (Math.random() - 0.5) * 10 - 2;
+                        target.x = Math.max(30, Math.min(canvas.width - 30, target.x));
+                        target.y = Math.max(70, Math.min(canvas.height - 70, target.y));
                         addParticles(target.x, target.y, '#ff6b6b', 3);
                     }
                 }
+                // Ограничение помощников
+                h.x = Math.max(20, Math.min(canvas.width - 20, h.x));
+                h.y = Math.max(70, Math.min(canvas.height - 70, h.y));
                 drawHelper(h);
             });
 
             // Обновление заводов
             factories.forEach(f => {
                 if (f.working) {
-                    f.progress += 0.6;
+                    f.progress += 0.5;
                     if (f.progress >= 100) {
                         f.working = false;
                         f.progress = 0;
                         items.push({
-                            x: f.x + f.w / 2 + (Math.random() - 0.5) * 20,
-                            y: f.y + f.h + 10 + Math.random() * 10,
+                            x: f.x + f.w / 2 + (Math.random() - 0.5) * 16,
+                            y: f.y + f.h + 8 + Math.random() * 8,
                             type: f.output
                         });
                         addParticles(f.x + f.w / 2, f.y + f.h / 2, '#ffd54f', 8);
@@ -1437,10 +1508,10 @@
 
             // Обновление травы
             grasses.forEach(g => {
-                g.phase += 0.05;
+                g.phase += 0.04;
                 g.age += 1;
-                if (g.age > 600) {
-                    // Трава засыхает
+                if (g.age > 500) {
+                    // Трава засыхает и исчезает
                     return;
                 }
                 drawGrass(g);
@@ -1451,43 +1522,124 @@
 
             // Медведи
             bears.forEach(b => {
-                // Медведи двигаются к животным
-                if (animals.length > 0 && Math.random() < 0.02) {
-                    let target = animals[Math.floor(Math.random() * animals.length)];
-                    let dist = Math.hypot(target.x - b.x, target.y - b.y);
-                    if (dist > 20) {
-                        b.x += (target.x - b.x) / dist * 0.5;
-                        b.y += (target.y - b.y) / dist * 0.5;
+                // Медведь бежит к ближайшему животному
+                let nearest = null;
+                let minDist = Infinity;
+                animals.forEach(a => {
+                    const d = Math.hypot(a.x - b.x, a.y - b.y);
+                    if (d < minDist) { minDist = d;
+                        nearest = a; }
+                });
+
+                if (nearest && minDist < 200) {
+                    const speed = 0.7;
+                    b.x += (nearest.x - b.x) / minDist * speed;
+                    b.y += (nearest.y - b.y) / minDist * speed;
+
+                    // Если коснулся животного
+                    if (minDist < 20) {
+                        const idx = animals.indexOf(nearest);
+                        if (idx !== -1) {
+                            // Животное улетает кувырками
+                            const fa = {
+                                x: nearest.x,
+                                y: nearest.y,
+                                vx: (Math.random() - 0.5) * 4 - 2,
+                                vy: -6 - Math.random() * 3,
+                                rotation: 0,
+                                type: nearest.type,
+                                life: 60
+                            };
+                            flyingAnimals.push(fa);
+                            animals.splice(idx, 1);
+                            addParticles(nearest.x, nearest.y, '#ff6b6b', 12);
+                            // Медведь убегает
+                            b.x += (Math.random() - 0.5) * 30;
+                            b.y += (Math.random() - 0.5) * 30 - 10;
+                        }
+                    }
+                } else {
+                    // Случайное движение медведя
+                    if (Math.random() < 0.01) {
+                        b.x += (Math.random() - 0.5) * 5;
+                        b.y += (Math.random() - 0.5) * 5;
                     }
                 }
-                // Ограничение
-                b.x = Math.max(50, Math.min(canvas.width - 50, b.x));
-                b.y = Math.max(80, Math.min(canvas.height - 80, b.y));
+
+                b.x = Math.max(30, Math.min(canvas.width - 30, b.x));
+                b.y = Math.max(70, Math.min(canvas.height - 70, b.y));
                 drawBear(b);
+            });
+
+            // Летающие животные
+            flyingAnimals.forEach((fa, idx) => {
+                fa.x += fa.vx;
+                fa.y += fa.vy;
+                fa.vy += 0.15;
+                fa.rotation += 0.1;
+                fa.life -= 1;
+                if (fa.life <= 0 || fa.y > canvas.height + 50) {
+                    flyingAnimals.splice(idx, 1);
+                } else {
+                    drawFlyingAnimal(fa);
+                }
             });
 
             // Грузовики
             trucks.forEach((t, idx) => {
-                t.x += 3;
-                drawTruck(t);
-                if (t.x > canvas.width + 60) {
-                    trucks.splice(idx, 1);
+                if (!t.returning) {
+                    t.x += 2.5;
+                    if (t.x > canvas.width + 60) {
+                        t.returning = true;
+                        t.x = canvas.width + 60;
+                        // Прибыль
+                        money += t.money || 0;
+                        addParticles(canvas.width - 50, canvas.height - 40, '#ffd54f', 15);
+                        updateUI();
+                        checkLevelGoal();
+                        setTimeout(() => {
+                            t.x = canvas.width + 60;
+                            t.returning = false;
+                        }, 500);
+                    }
+                } else {
+                    t.x -= 2;
+                    if (t.x < -60) {
+                        truckActive = false;
+                        trucks.splice(idx, 1);
+                        return;
+                    }
                 }
+                drawTruck(t);
             });
 
-            // Самолеты
+            // Самолёты
             planes.forEach((p, idx) => {
-                p.x += 2.5;
-                drawPlane(p);
-                if (p.x > canvas.width + 60) {
-                    // Сброс предмета
-                    if (warehouse.length < maxStorage) {
-                        warehouse.push(p.type);
-                        addParticles(canvas.width - 50, p.y + 10, '#42a5f5', 8);
-                        updateUI();
+                if (!p.returning) {
+                    p.x += 2;
+                    if (p.x > canvas.width + 60) {
+                        p.returning = true;
+                        p.x = canvas.width + 60;
+                        // Привозит товар
+                        if (p.hasCargo && warehouse.length < maxStorage) {
+                            warehouse.push(p.type);
+                            addParticles(canvas.width - 50, p.y + 10, '#42a5f5', 10);
+                            updateUI();
+                        }
+                        setTimeout(() => {
+                            p.x = canvas.width + 60;
+                            p.returning = false;
+                        }, 400);
                     }
-                    planes.splice(idx, 1);
+                } else {
+                    p.x -= 2.5;
+                    if (p.x < -60) {
+                        planeActive = false;
+                        planes.splice(idx, 1);
+                        return;
+                    }
                 }
+                drawPlane(p);
             });
 
             // Частицы
@@ -1504,20 +1656,26 @@
             });
 
             // Появление медведей
-            if (bears.length < 2 && Math.random() < 0.003) {
+            if (bears.length < 2 && Math.random() < 0.002 && animals.length > 0) {
                 bears.push({
-                    x: 50 + Math.random() * (canvas.width - 100),
-                    y: 80 + Math.random() * (canvas.height - 200),
+                    x: 30 + Math.random() * (canvas.width - 60),
+                    y: 70 + Math.random() * (canvas.height - 140),
                     clicks: 0
                 });
                 addParticles(bears[bears.length - 1].x, bears[bears.length - 1].y, '#5d4037', 8);
             }
 
-            // Появление травы автоматически
-            if (grasses.length < 25 && Math.random() < 0.01) {
-                const x = 60 + Math.random() * (canvas.width - 120);
-                const y = 80 + Math.random() * (canvas.height - 200);
+            // Автоматический рост травы
+            if (grasses.length < 20 && Math.random() < 0.008) {
+                const x = 40 + Math.random() * (canvas.width - 80);
+                const y = 75 + Math.random() * (canvas.height - 150);
                 grasses.push({ x, y, phase: Math.random() * Math.PI * 2, age: 0 });
+            }
+
+            // Колодец даёт воду автоматически
+            if (water < maxWater && wells.length > 0 && Math.random() < 0.001) {
+                water = Math.min(maxWater, water + 1);
+                updateUI();
             }
 
             requestAnimationFrame(gameLoop);
@@ -1528,12 +1686,9 @@
         // Периодическое обновление UI
         setInterval(updateUI, 200);
 
-        // Начало игры
         updateUI();
-
-        console.log('🎮 Весёлая Ферма 2 запущена!');
-        console.log('💰 Цель уровня: $' + levelGoal);
+        console.log('🐮 Весёлая Ферма 2 - Полная версия!');
     </script>
 
 </body>
-    </html>
+                </html>
