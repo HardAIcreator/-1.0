@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>Весёлая Ферма</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; user-select: none; }
+        body {
+            background-color: #222;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            overflow: hidden;
+        }
+        #game-container {
+            position: relative;
+            width: 100vw;
+            height: 100vh;
+            max-width: 480px;
+            max-height: 800px;
+            background: #8bc34a;
+            border: 4px solid #5d4037;
+            border-radius: 12px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+        #ui-top {
+            background: rgba(0,0,0,0.4);
+            color: #fff;
+            padding: 8px 12px;
+            display: flex;
+            justify-content: space-between;
+            font-size: 14px;
+            font-weight: bold;
+            z-index: 10;
+        }
+        #canvas {
+            flex: 1;
+            width: 100%;
+            height: 100%;
+            touch-action: manipulation;
+        }
+        #ui-bottom {
+            background: #5d4037;
+            padding: 8px;
+            display: flex;
+            justify-content: space-around;
+            z-index: 10;
+        }
+        .btn {
+            background: #ffb74d;
+            border: 2px solid #fff;
+            border-radius: 8px;
+            padding: 6px 10px;
+            font-size: 12px;
+            font-weight: bold;
+            color: #3e2723;
+            cursor: pointer;
+            box-shadow: 0 4px 0 #b16a00;
+            text-align: center;
+        }
+        .btn:active {
+            transform: translateY(2px);
+            box-shadow: 0 2px 0 #b16a00;
+        }
+    </style>
+</head>
+<body>
+
+<div id="game-container">
+    <div id="ui-top">
+        <div>💰 Деньги: $<span id="money">100</span></div>
+        <div>💧 Вода: <span id="water">5</span>/5</div>
+        <div>🎯 Цель: $<span id="target">300</span></div>
+    </div>
+
+    <canvas id="canvas"></canvas>
+
+    <div id="ui-bottom">
+        <div class="btn" onclick="buyChicken()">🐔 Курица<br>($50)</div>
+        <div class="btn" onclick="refillWell()">💧 Колодец<br>($10)</div>
+        <div class="btn" onclick="sendTruck()">🚚 Рынок<br>(Продать)</div>
+    </div>
+</div>
+
+<script>
+const canvas = document.getElementById('canvas');
+const ctx = canvas.getContext('2d');
+
+let money = 100;
+let water = 5;
+const maxWater = 5;
+let targetMoney = 300;
+
+// Размеры экрана
+function resize() {
+    canvas.width = canvas.parentElement.clientWidth;
+    canvas.height = canvas.parentElement.clientHeight - 100;
+}
+resize();
+
+// Игровые объекты
+let grasses = [];
+let chickens = [];
+let items = [];
+let bears = [];
+let factory = { x: 20, y: 40, w: 70, h: 50, status: 'ready', progress: 0 };
+let warehouse = { count: 0, max: 10 };
+
+// Рисование объектов (Модели на Canvas)
+function drawGrass(x, y) {
+    ctx.fillStyle = '#4caf50';
+    ctx.beginPath();
+    ctx.arc(x, y, 12, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.fillStyle = '#2e7d32';
+    ctx.fillRect(x - 2, y - 8, 4, 8);
+}
+
+function drawChicken(c) {
+    ctx.fillStyle = '#fff';
+    ctx.beginPath();
+    ctx.arc(c.x, c.y, 14, 0, Math.PI * 2);
+    ctx.fill();
+    // Гребешок
+    ctx.fillStyle = '#f44336';
+    ctx.fillRect(c.x - 4, c.y - 18, 8, 5);
+    // Клюв
+    ctx.fillStyle = '#ff9800';
+    ctx.beginPath();
+    ctx.moveTo(c.x + 10, c.y - 2);
+    ctx.lineTo(c.x + 16, c.y + 2);
+    ctx.lineTo(c.x + 10, c.y + 6);
+    ctx.fill();
+}
+
+function drawBear(b) {
+    ctx.fillStyle = '#795548';
+    ctx.beginPath();
+    ctx.arc(b.x, b.y, 20, 0, Math.PI * 2);
+    ctx.fill();
+    // Уши
+    ctx.arc(b.x - 14, b.y - 14, 6, 0, Math.PI * 2);
+    ctx.arc(b.x + 14, b.y - 14, 6, 0, Math.PI * 2);
+    ctx.fill();
+    // Клетка
+    if (b.clicks > 0) {
+        ctx.strokeStyle = '#9e9e9e';
+        ctx.lineWidth = 3;
+        const cageSize = 44 - b.clicks * 10;
+        ctx.strokeRect(b.x - cageSize/2, b.y - cageSize/2, cageSize, cageSize);
+    }
+}
+
+function drawItem(item) {
+    if (item.type === 'egg') {
+        ctx.fillStyle = '#fff8e1';
+        ctx.beginPath();
+        ctx.ellipse(item.x, item.y, 8, 11, 0, 0, Math.PI * 2);
+        ctx.fill();
+    } else if (item.type === 'powder') {
+        ctx.fillStyle = '#ffee58';
+        ctx.fillRect(item.x - 8, item.y - 8, 16, 16);
+    } else if (item.type === 'caged_bear') {
+        ctx.fillStyle = '#795548';
+        ctx.fillRect(item.x - 12, item.y - 12, 24, 24);
+        ctx.strokeStyle = '#fff';
+        ctx.strokeRect(item.x - 12, item.y - 12, 24, 24);
+    }
+}
+
+function drawFactory() {
+    ctx.fillStyle = '#78909c';
+    ctx.fillRect(factory.x, factory.y, factory.w, factory.h);
+    ctx.fillStyle = '#fff';
+    ctx.font = '10px Arial';
+    ctx.fillText('Завод порошка', factory.x + 2, factory.y + 15);
+    
+    if (factory.status === 'working') {
+        ctx.fillStyle = '#4caf50';
+        ctx.fillRect(factory.x, factory.y + factory.h - 6, (factory.progress / 100) * factory.w, 6);
+    }
+}
+
+// Клик по игровому полю
+canvas.addEventListener('pointerdown', (e) => {
+    const rect = canvas.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+
+    // 1. Сбор предметов
+    for (let i = items.length - 1; i >= 0; i--) {
+        let item = items[i];
+        if (Math.hypot(item.x - x, item.y - y) < 25) {
+            if (warehouse.count < warehouse.max) {
+                warehouse.count++;
+                items.splice(i, 1);
+                updateUI();
+            } else {
+                alert('Склад переполнен!');
+            }
+            return;
+        }
+    }
+
+    // 2. Ловля медведей
+    for (let i = bears.length - 1; i >= 0; i--) {
+        let b = bears[i];
+        if (Math.hypot(b.x - x, b.y - y) < 25) {
+            b.clicks++;
+            if (b.clicks >= 3) {
+                items.push({ x: b.x, y: b.y, type: 'caged_bear', value: 80 });
+                bears.splice(i, 1);
+            }
+            return;
+        }
+    }
+
+    // 3. Старт завода
+    if (x >= factory.x && x <= factory.x + factory.w && y >= factory.y && y <= factory.y + factory.h) {
+        if (factory.status === 'ready') {
+            // Ищем яйцо в предметах на складе (упрощено: из ресурсов)
+            factory.status = 'working';
+            factory.progress = 0;
+        }
+        return;
+    }
+
+    // 4. Полив травы
+    if (y > 100 && water > 0) {
+        water--;
+        grasses.push({ x, y });
+        updateUI();
+    }
+});
+
+// Магазин и управление
+function buyChicken() {
+    if (money >= 50) {
+        money -= 50;
+        chickens.push({
+            x: Math.random() * (canvas.width - 60) + 30,
+            y: Math.random() * (canvas.height - 200) + 120,
+            timer: 0
+        });
+        updateUI();
+    }
+}
+
+function refillWell() {
+    if (money >= 10 && water < maxWater) {
+        money -= 10;
+        water = maxWater;
+        updateUI();
+    }
+}
+
+function sendTruck() {
+    if (warehouse.count > 0) {
+        const earned = warehouse.count * 20;
+        money += earned;
+        warehouse.count = 0;
+        updateUI();
+        checkWin();
+    }
+}
+
+function updateUI() {
+    document.getElementById('money').innerText = money;
+    document.getElementById('water').innerText = water;
+}
+
+function checkWin() {
+    if (money >= targetMoney) {
+        setTimeout(() => alert('🎉 Уровень пройден! Золотая медаль!'), 100);
+    }
+}
+
+// Появление медведей
+setInterval(() => {
+    if (Math.random() < 0.3 && bears.length < 2) {
+        bears.push({
+            x: Math.random() * (canvas.width - 60) + 30,
+            y: Math.random() * (canvas.height - 200) + 120,
+            clicks: 0
+        });
+    }
+}, 8000);
+
+// Игровой цикл
+function gameLoop() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    // Отрисовка травы
+    grasses.forEach(g => drawGrass(g.x, g.y));
+
+    // Отрисовка Завода
+    drawFactory();
+    if (factory.status === 'working') {
+        factory.progress += 0.5;
+        if (factory.progress >= 100) {
+            factory.status = 'ready';
+            items.push({ x: factory.x + factory.w / 2, y: factory.y + factory.h + 20, type: 'powder', value: 40 });
+        }
+    }
+
+    // Отрисовка Куриц
+    chickens.forEach((c) => {
+        // Движение к ближайшей траве
+        if (grasses.length > 0) {
+            let target = grasses[0];
+            let dist = Math.hypot(target.x - c.x, target.y - c.y);
+            if (dist > 5) {
+                c.x += (target.x - c.x) / dist * 0.8;
+                c.y += (target.y - c.y) / dist * 0.8;
+            } else {
+                // Поедание травы
+                grasses.shift();
+            }
+        }
+
+        // Производство яиц
+        c.timer += 1;
+        if (c.timer > 300) {
+            items.push({ x: c.x, y: c.y, type: 'egg', value: 10 });
+            c.timer = 0;
+        }
+
+        drawChicken(c);
+    });
+
+    // Отрисовка предметов
+    items.forEach(item => drawItem(item));
+
+    // Отрисовка медведей
+    bears.forEach(b => drawBear(b));
+
+    requestAnimationFrame(gameLoop);
+}
+
+gameLoop();
+</script>
+
+</body>
+</html>
